@@ -13,12 +13,6 @@ export default function Home() {
 				>
 					LOGIN
 				</Link>
-				<Link
-					href='/signup'
-					className='text-xl text-center w-1/2 font-bold text-stone-200 bg-stone-600 px-12 py-4 rounded-xl hover:bg-stone-700'
-				>
-					SIGNUP
-				</Link>
 			</div>
 		</main>
 	);
