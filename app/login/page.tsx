@@ -11,6 +11,9 @@ export default function Page() {
 				<form action={loginWithGitHub}>
 					<button type='submit'>LOGIN WITH GITHUB</button>
 				</form>
+				<form action={loginWithDiscord}>
+					<button type='submit'>LOGIN WITH DISCORD</button>
+				</form>
 			</div>
 		</main>
 	);
@@ -19,4 +22,9 @@ export default function Page() {
 async function loginWithGitHub() {
 	'use server';
 	await signIn('github');
+}
+
+async function loginWithDiscord() {
+	'use server';
+	await signIn('discord');
 }
