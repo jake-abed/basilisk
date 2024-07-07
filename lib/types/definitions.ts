@@ -7,7 +7,7 @@ export type User = {
 	lastUpdatedAt?: string; //Additional optional field.
 };
 
-export type Post = {
+export type Message = {
 	id: string; //Strictly created on the DB.
 	userId: string;
 	content: string;
