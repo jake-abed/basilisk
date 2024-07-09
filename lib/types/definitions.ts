@@ -7,10 +7,20 @@ export type User = {
 	lastUpdatedAt?: string; //Additional optional field.
 };
 
-export type Message = {
+export type Follower = {
+	id: string;
+	userId: string;
+	followerId: string;
+	createdAt?: string;
+	lastUpdatedAt?: string;
+};
+
+export type Note = {
 	id: string; //Strictly created on the DB.
 	userId: string;
 	content: string;
 	image?: string; //URL to image
 	cursed: boolean;
+	createdAt?: string;
+	lastUpdatedAt?: string;
 };

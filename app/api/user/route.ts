@@ -1,7 +1,6 @@
 import { sql } from '@vercel/postgres';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
-import { User } from '@/lib/types/definitions';
 
 const UserSchema = z.object({
 	id: z.string(),
