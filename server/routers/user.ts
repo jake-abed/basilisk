@@ -1,6 +1,7 @@
 import { publicProcedure, router } from '../trpc';
 import { z } from 'zod';
 import { getFirstUser, getUserByEmail, addUser } from '@/lib/utils/users';
+import { auth } from '@/auth';
 
 const UserSchema = z.object({
 	id: z.string(),
@@ -11,6 +12,9 @@ const UserSchema = z.object({
 
 export const userRouter = router({
 	getFirstUser: publicProcedure.query(getFirstUser),
+	currentUser: publicProcedure.query(async () => {
+		return await auth();
+	}),
 	getUserByEmail: publicProcedure.input(z.string()).query(async (opts) => {
 		return getUserByEmail(opts.input);
 	}),
