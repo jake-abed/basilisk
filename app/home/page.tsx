@@ -10,8 +10,8 @@ export default function Page() {
 
 	return (
 		<>
-			<header className='flex flex-row justify-between w-full'>
-				<h1 className='text-slate-200 font-extrabold text-lg p-4'>BASILISK</h1>
+			<header className='bg-emerald-950 flex flex-row justify-between w-full'>
+				<h1 className='text-slate-200 font-extrabold text-3xl p-4'>BASILISK</h1>
 				{userQuery.isLoading ? (
 					<div className='flex flex-col justify-end items-end animate-pulse p-4 gap-4'>
 						<div className='bg-slate-700 w-[50px] h-[50px] rounded-full'></div>
