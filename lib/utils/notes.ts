@@ -6,7 +6,7 @@ type NoteOpts = {
 	page: number;
 };
 
-export async function getNotesByUser(
+export async function getRecentNotesByUser(
 	userId: string,
 	opts: NoteOpts = { limit: 10, page: 1 }
 ) {
@@ -18,6 +18,23 @@ export async function getNotesByUser(
 					ORDER BY created_at DESC
 					LIMIT ${opts.limit} OFFSET ${offset}
 			`;
+		return res.rows;
+	} catch (error) {
+		console.error(error);
+		return error;
+	}
+}
+
+export async function getMostRecentNotes(
+	opts: NoteOpts = { limit: 20, page: 1 }
+) {
+	let offset: number = opts.page === 1 ? 0 : opts.page - 1 * opts.limit;
+	try {
+		const res = await sql`
+			SELECT user_id, content, image, created_at
+				FROM NOTES ORDER BY created_at DESC
+				LIMIT ${opts.limit} OFFSET ${offset}
+		`;
 		return res.rows;
 	} catch (error) {
 		console.error(error);
