@@ -9,5 +9,9 @@ const handler = (req: Request) =>
 		router: appRouter,
 		//@ts-ignore
 		createContext: (ctx: Context) => ctx,
+		credentials: 'include',
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+		},
 	});
 export { handler as GET, handler as POST };
