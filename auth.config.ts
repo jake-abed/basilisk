@@ -1,9 +1,13 @@
 import type { NextAuthConfig } from 'next-auth';
-import Github from 'next-auth/providers/github';
-import Discord from 'next-auth/providers/discord';
 import { getUserByEmail } from './lib/utils/users';
+import PostgresAdapter from '@auth/pg-adapter';
+import { Pool } from '@neondatabase/serverless';
+import Sendgrid from 'next-auth/providers/sendgrid';
+
+const pool = new Pool({ connectionString: process.env.POSTGRES_URL });
 
 export const authConfig = {
+	adapter: PostgresAdapter(pool),
 	pages: {
 		signIn: '/login',
 		signOut: '/logout',
@@ -25,5 +29,9 @@ export const authConfig = {
 			return true;
 		},
 	},
-	providers: [Github, Discord],
+	providers: [
+		Sendgrid({
+			from: 'admin@jakeabed.dev',
+		}),
+	],
 } satisfies NextAuthConfig;

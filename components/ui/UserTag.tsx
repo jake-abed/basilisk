@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { signOut } from 'next-auth/react';
 
 export function UserTag({
 	username,
@@ -15,12 +16,12 @@ export function UserTag({
 				) : (
 					<div className='rounded-full bg-slate-700'></div>
 				)}
-				<Link
-					href='/logout'
+				<button
+					onClick={() => signOut()}
 					className='text-xs text-center font-bold text-stone-200'
 				>
 					LOGOUT
-				</Link>
+				</button>
 			</div>
 		</>
 	);

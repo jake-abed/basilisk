@@ -43,15 +43,15 @@ export async function getMostRecentNotes(
 }
 
 export async function createNote(
-	userId: string,
+	userId: number,
 	content: string,
-	image: string | null = null
+	image: string = ''
 ) {
 	try {
 		const res = await sql`
 			INSERT INTO notes
 				(user_id, content, image)
-				(${userId}, ${content}, ${image})
+				VALUES (${userId}, ${content}, ${image})
 		`;
 		return res;
 	} catch (error) {

@@ -22,7 +22,6 @@ export const userRouter = router({
 		.input(z.object({ email: z.string(), image: z.string().optional() }))
 		.mutation(async (opts) => {
 			const { email, image } = opts.input;
-			console.log(email, image);
 			return await addUser(email, image);
 		}),
 });

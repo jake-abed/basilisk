@@ -8,23 +8,16 @@ export default function Page() {
 				<h1 className='text-center text-3xl text-stone-200 font-extrabold'>
 					LOGIN OR SIGNUP
 				</h1>
-				<form action={loginWithGitHub}>
-					<button type='submit'>LOGIN WITH GITHUB</button>
-				</form>
-				<form action={loginWithDiscord}>
-					<button type='submit'>LOGIN WITH DISCORD</button>
+				<form
+					action={async (formData) => {
+						'use server';
+						await signIn('sendgrid', formData);
+					}}
+				>
+					<input type='text' name='email' placeholder='john@dark.souls'></input>
+					<button type='submit'>LOGIN</button>
 				</form>
 			</div>
 		</main>
 	);
-}
-
-async function loginWithGitHub() {
-	'use server';
-	await signIn('github');
-}
-
-async function loginWithDiscord() {
-	'use server';
-	await signIn('discord');
 }

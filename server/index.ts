@@ -7,8 +7,8 @@ export const appRouter = router({
 		console.log('Hi!');
 		return 'Hi!';
 	}),
-	user: userRouter,
-	post: noteRouter,
+	users: userRouter,
+	notes: noteRouter,
 });
 
 export type AppRouter = typeof appRouter;

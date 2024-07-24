@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth/pg-adapter": "^1.4.1",
     "@tanstack/react-query": "^5.49.2",
     "@trpc/client": "^11.0.0-rc.433",
     "@trpc/next": "^11.0.0-rc.433",

@@ -5,6 +5,7 @@ import {
 	getRecentNotesByUser,
 	createNote,
 } from '@/lib/utils/notes';
+import { auth } from '@/auth';
 
 const noteSchema = z.object({
 	id: z.string(),
@@ -18,6 +19,7 @@ const noteSchema = z.object({
 
 const createNoteSchema = noteSchema.omit({
 	id: true,
+	userId: true,
 	cursed: true,
 	createdAt: true,
 	lastUpdatedAt: true,
@@ -40,7 +42,10 @@ export const noteRouter = router({
 	createNote: privateProcedure
 		.input(createNoteSchema)
 		.mutation(async (opts) => {
-			const { userId, content, image } = opts.input;
-			return await createNote(userId, content, image);
+			const user = await auth();
+			const userId = user?.user?.id;
+			if (!userId) throw Error('No such user');
+			const { content, image } = opts.input;
+			return await createNote(Number(userId), content, image);
 		}),
 });
