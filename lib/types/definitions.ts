@@ -18,8 +18,12 @@ export type Follower = {
 export type Note = {
 	id: string; //Strictly created on the DB.
 	userId: string;
+	username?: string;
+	profilePic?: string;
 	content: string;
 	image?: string; //URL to image
+	fine: number;
+	foul: number;
 	cursed: boolean;
 	createdAt?: string;
 	lastUpdatedAt?: string;
