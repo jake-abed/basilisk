@@ -1,14 +1,27 @@
 'use client';
 import { trpc } from '../../_trpc/client';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 export default function Page() {
 	const [message, setMessage] = useState<string>('');
-	const createNote = trpc.notes.createNote.useMutation();
+	const router = useRouter();
+	const createNote = trpc.notes.createNote.useMutation({
+		onSuccess: () => {
+			console.log('Testing 123');
+			router.push('/home');
+		},
+	});
 
 	return (
 		<>
-			<form>
+			<form
+				className='flex flex-col gap-4'
+				onSubmit={(e) => {
+					e.preventDefault();
+					createNote.mutate({ content: message });
+				}}
+			>
 				<textarea
 					maxLength={255}
 					name='note'
@@ -21,13 +34,10 @@ export default function Page() {
 					}}
 					required
 				></textarea>
-				<button
-					onClick={() => {
-						createNote.mutate({ content: message });
-					}}
-				>
-					Create Note
-				</button>
+				<input
+					className='bg-stone-600 rounded-lg text-white text-lg font-bold p-2'
+					type='submit'
+				></input>
 			</form>
 		</>
 	);

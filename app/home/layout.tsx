@@ -27,10 +27,10 @@ export default function HomeLayout({
 					<UserTag username={user?.name} pic={user?.image} />
 				) : null}
 			</header>
-			<section className='flex m-auto justify-center items-center'>
+			<section className='flex m-auto justify-center items-center pb-24'>
 				{children}
 			</section>
-			<nav className='fixed bottom-0'>
+			<nav className='fixed bottom-0 py-4'>
 				<ul className='flex w-screen justify-center gap-4'>
 					<Link href='/home'>
 						<li className='text-stone-200 font-bold bg-emerald-950 rounded-xl px-4 py-2'>
