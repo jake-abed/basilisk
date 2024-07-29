@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { signIn } from '@/auth';
+import { z } from 'zod';
 
 export default function Page() {
 	return (

@@ -1,4 +1,5 @@
 import { sql } from '@vercel/postgres';
+import type { User } from '@/lib/types/definitions';
 
 async function getFirstUser() {
 	try {
@@ -25,6 +26,20 @@ async function getUserByEmail(email: string) {
 	}
 }
 
+async function updateUserInfo(user: User) {
+	try {
+		const res = await sql`
+			UPDATE users
+				SET username = ${user.username}, image = ${user.image}
+				WHERE id = ${user.id}
+		`;
+		return res.rows;
+	} catch (error) {
+		console.error(error);
+		return error;
+	}
+}
+
 async function addUser(email: string, image: string | null = null) {
 	try {
 		const res = await sql`
@@ -38,4 +53,4 @@ async function addUser(email: string, image: string | null = null) {
 	}
 }
 
-export { getFirstUser, getUserByEmail, addUser };
+export { getFirstUser, getUserByEmail, addUser, updateUserInfo };

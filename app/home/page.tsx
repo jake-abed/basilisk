@@ -4,7 +4,7 @@ import { Note } from '@/lib/types/definitions';
 
 export default function Page() {
 	const mostRecentNotes = trpc.notes.getMostRecentNotes.useQuery({
-		limit: 10,
+		limit: 20,
 		page: 1,
 	});
 	const notes = mostRecentNotes.data as Array<Note>;

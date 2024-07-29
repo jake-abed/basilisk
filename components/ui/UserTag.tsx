@@ -10,7 +10,7 @@ export function UserTag({
 }) {
 	return (
 		<>
-			<div className='flex flex-col justify-end items-end gap-4 p-4'>
+			<div className='flex flex-row-reverse justify-end items-center gap-4 p-4'>
 				{!!pic ? (
 					<img className='rounded-full' src={pic} width={50} height={50} />
 				) : (
