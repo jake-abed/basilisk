@@ -40,8 +40,7 @@ export default function Page() {
 							className='text-stone-950 rounded-lg p-2'
 							min={1}
 							max={20}
-							//@ts-ignore
-							value={userInfo?.name}
+							value={userInfo?.name ? userInfo.name : ''}
 							onChange={(e) => {
 								setUserInfo({ ...userInfo, name: e.target.value });
 							}}
@@ -51,10 +50,10 @@ export default function Page() {
 						<h2>Update your PFP!</h2>
 						<img
 							className='rounded-full m-auto'
-							src={userInfo?.image}
+							src={userInfo?.image ? userInfo.image : ''}
 							alt='Profile picture!'
 							width={96}
-							heigh={96}
+							height={96}
 						/>
 						<UploadButton
 							className='ut-button:bg-emerald-900 ut-button:ut-readying:bg-emerald-900/50 ut-button:border-solid ut-button:border-stone-200 ut-button:ut-readying:border-stone-200/50 ut-button:border-2 ut-button:ut-uploading:bg-emerald-800 ut-button:ut-uploading:after:bg-emerald-600'
