@@ -18,8 +18,6 @@ export default function Page() {
 	const [editing, setEdit] = useState(false);
 	const [userInfo, setUserInfo] = useState(user);
 
-	const pfpUrl = useRef<string | undefined>(user?.image);
-
 	return (
 		<>
 			{userQuery.isLoading ? (
@@ -59,6 +57,7 @@ export default function Page() {
 							className='ut-button:bg-emerald-900 ut-button:ut-readying:bg-emerald-900/50 ut-button:border-solid ut-button:border-stone-200 ut-button:ut-readying:border-stone-200/50 ut-button:border-2 ut-button:ut-uploading:bg-emerald-800 ut-button:ut-uploading:after:bg-emerald-600'
 							endpoint='imageUploader'
 							onClientUploadComplete={(res) => {
+								setUserInfo({ ...userInfo, image: res[0].url });
 								console.log(res);
 							}}
 							onUploadError={(error: Error) => {
@@ -79,8 +78,16 @@ export default function Page() {
 						<button
 							className='bg-emerald-900 px-3 py-1 rounded-lg border-stone-200 border-2 border-solid hover:bg-emerald-950'
 							onClick={() => {
-								console.log('We did it, Joe!');
-								setEdit(true);
+								if (!userInfo?.id) return;
+								updateUserInfo.mutate({
+									//@ts-ignore
+									email: userInfo?.email,
+									id: Number(userInfo?.id),
+									//@ts-ignore
+									image: userInfo?.image,
+									//@ts-ignore
+									username: userInfo?.name,
+								});
 							}}
 						>
 							Save

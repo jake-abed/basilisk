@@ -4,7 +4,6 @@ import type { User } from '@/lib/types/definitions';
 async function getFirstUser() {
 	try {
 		const res = await sql`SELECT * FROM users ORDER BY created_at ASC LIMIT 1`;
-		console.log(res.rows[0]);
 		return res.rows[0];
 	} catch (error) {
 		console.error(error);
@@ -30,7 +29,7 @@ async function updateUserInfo(user: User) {
 	try {
 		const res = await sql`
 			UPDATE users
-				SET username = ${user.username}, image = ${user.image}
+				SET name = ${user.username}, image = ${user.image}
 				WHERE id = ${user.id}
 		`;
 		return res.rows;

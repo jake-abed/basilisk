@@ -1,5 +1,5 @@
 export type User = {
-	id: string; //Strictly created on the DB.
+	id: number; //Strictly created on the DB.
 	username: string;
 	email: string;
 	image?: string; //URL to image

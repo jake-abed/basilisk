@@ -14,7 +14,7 @@ export default function Page() {
 			{mostRecentNotes?.data
 				? notes.map((note: Note) => (
 						<div
-							className='bg-emerald-950 p-4 rounded-lg flex flex-col gap-4'
+							className='bg-emerald-950 p-4 rounded-lg flex flex-col gap-4 max-w-96'
 							key={note.id}
 						>
 							<div className='flex justify-between items-center'>
@@ -31,6 +31,10 @@ export default function Page() {
 							<p className='text-stone-200 font-normal text-lg'>
 								{note.content}
 							</p>
+							<div className='flex justify-center gap-8'>
+								<p>Fine: {note.fine}</p>
+								<p>Foul: {note.foul}</p>
+							</div>
 						</div>
 				  ))
 				: null}

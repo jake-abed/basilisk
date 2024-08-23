@@ -13,6 +13,10 @@ export const authConfig = {
 		signOut: '/logout',
 	},
 	callbacks: {
+		async signIn(message) {
+			console.log(message);
+			return true;
+		},
 		async authorized({ auth, request: { nextUrl } }) {
 			const isLoggedIn = !!auth?.user;
 			const userEmail = auth?.user?.email;

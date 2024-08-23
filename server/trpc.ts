@@ -7,7 +7,6 @@ export const router = t.router;
 export const publicProcedure = t.procedure;
 export const privateProcedure = t.procedure.use(async (opts) => {
 	const { ctx } = opts;
-	console.log(ctx);
 	if (!ctx) {
 		throw new TRPCError({ code: 'UNAUTHORIZED' });
 	}

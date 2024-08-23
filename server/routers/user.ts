@@ -9,7 +9,7 @@ import {
 import { auth } from '@/auth';
 
 const UserSchema = z.object({
-	id: z.string(),
+	id: z.number(),
 	username: z.string(),
 	email: z.string(),
 	image: z.string().default(''),
